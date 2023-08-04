@@ -101,9 +101,15 @@ from Configuration.AlCa.GlobalTag import GlobalTag
 process.GlobalTag = GlobalTag(process.GlobalTag, '124X_dataRun3_Prompt_v10','')
 
 # Path and EndPath definitions
+process.RawToDigiTask.remove(process.siStripDigis)
 process.raw2digi_step = cms.Path(process.RawToDigi)
+
 process.L1Reco_step = cms.Path(process.L1Reco)
 process.reconstruction_step = cms.Path(process.reconstruction)
+
+process.MeasurementTrackerEvent.inactiveStripDetectorLabels = cms.VInputTag("siStripDigisHLT") 
+process.MeasurementTrackerEventPreSplitting.inactiveStripDetectorLabels = cms.VInputTag("siStripDigisHLT")
+
 process.endjob_step = cms.EndPath(process.endOfProcess)
 process.FEVTDEBUGHLToutput_step = cms.EndPath(process.FEVTDEBUGHLToutput)
 
